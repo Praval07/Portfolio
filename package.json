@@ -1,0 +1,37 @@
+{
+  "name": "praval-saxena-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Praval Saxena — AI Engineer / Full-Stack Developer / System Designer. Personal engineering portfolio.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "framer-motion": "^11.15.0",
+    "gray-matter": "^4.0.3",
+    "lucide-react": "^0.469.0",
+    "next": "^15.1.0",
+    "next-mdx-remote": "^5.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@netlify/plugin-nextjs": "^5.15.12",
+    "@tailwindcss/postcss": "^4.0.0",
+    "@types/node": "^22.10.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "eslint": "^9.17.0",
+    "eslint-config-next": "^15.1.0",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.7.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

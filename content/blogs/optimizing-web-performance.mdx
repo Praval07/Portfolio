@@ -1,0 +1,55 @@
+---
+title: "Optimizing Next.js App Router for Sub-100ms LCP"
+excerpt: "Practical strategies for reducing Largest Contentful Paint (LCP) and achieving perfect Lighthouse scores on dynamic Next.js sites."
+category: "Full Stack Development"
+author: "Praval Saxena"
+date: "2026-05-20"
+readTime: "5 min read"
+tags: ["Next.js", "Web Performance", "SEO", "Vercel"]
+image: "/assets/blog/web_performance_cover.png"
+difficulty: "Intermediate"
+---
+
+## The Goal: Sub-100ms LCP
+
+Web performance is directly tied to user engagement and search visibility. In the App Router, Next.js gives us powerful tools, but dynamic rendering can easily degrade response times if not set up correctly.
+
+Let's explore key techniques to push your Largest Contentful Paint (LCP) below 100ms.
+
+## 1. Zero-JS Server Components
+
+By default, every page component in Next.js App Router is a React Server Component (RSC). They do not ship any JavaScript to the browser. Only client components (`"use client"`) send JS.
+
+To keep the bundle size small:
+- Limit `"use client"` statements to leaf nodes (like individual buttons or toggles).
+- Fetch data directly in server components and pass it down as props.
+
+## 2. Dynamic Streaming
+
+If a page has slow database queries or fetches third-party APIs, use **RSC streaming**. By wrapping slow elements in React `<Suspense>`, Next.js will stream the shell page immediately and fill in the dynamic components once the data resolves.
+
+```tsx
+import { Suspense } from "react";
+import { SlowComponent } from "./SlowComponent";
+import { Skeleton } from "@/components/ui/Skeleton";
+
+export default function Page() {
+  return (
+    <main>
+      <h1>My Portfolio Dashboard</h1>
+      <Suspense fallback={<Skeleton />}>
+        <SlowComponent />
+      </Suspense>
+    </main>
+  );
+}
+```
+
+## 3. Preconnecting & Font Optimization
+
+Use `next/font` to let Next.js host and optimize Google Fonts locally. This avoids extra DNS lookups and prevents flash of unstyled text (FOUT).
+
+Preconnect to critical assets:
+- Image assets on CDN.
+- External API domains.
+- Video streaming servers.
