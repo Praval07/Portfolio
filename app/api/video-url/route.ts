@@ -2,9 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 
 // ─── OneDrive sharing URLs ────────────────────────────────────────────────────
 const SHARE_URLS = {
-  hero: "https://1drv.ms/v/c/97627625100c5a0f/IQAiHHXF5k0oTbidta5obVFPAd0DTE2cnRzk7AI1z02wW08?e=oPmgnu",
+  hero: "https://1drv.ms/v/c/97627625100c5a0f/IQCDb-74EBYKTIWw8Vlw-2I2AeTBaxVBJomXJTJ7aj_FZfg?e=Pvvvaf",
   gallery:
-    "https://1drv.ms/v/c/97627625100c5a0f/IQAfeFV8lLEIT4Zsy1nws65MAcRfvH_dc9i4eFV31dhFqf0?e=F0MeKI",
+    "https://1drv.ms/v/c/97627625100c5a0f/IQAgvAnAeCUDS75jXpBu6B5UAQDs8fIinZ2fDp9acJ5aODI?e=DlYJe0",
 } as const;
 
 type VideoKey = keyof typeof SHARE_URLS;
