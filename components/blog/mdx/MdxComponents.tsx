@@ -143,7 +143,7 @@ export function EngineeringNote({ children, type, title }: EngineeringNoteProps)
 export function Checklist({ items }: { items: string[] }) {
   return (
     <ul className="flex flex-col gap-3 my-6 list-none p-0">
-      {items.map((item, i) => (
+      {(items ?? []).map((item, i) => (
         <li key={i} className="flex items-start gap-3 text-sm sm:text-base text-ink-soft list-none m-0">
           <span className="mt-1 flex-shrink-0 w-4 h-4 rounded-full border border-gold bg-gold/5 flex items-center justify-center text-[10px] text-gold-deep font-bold select-none">
             ✓
@@ -165,7 +165,7 @@ interface TimelineItem {
 export function Timeline({ items }: { items: TimelineItem[] }) {
   return (
     <div className="relative border-l border-line pl-6 my-10 flex flex-col gap-8 ml-3">
-      {items.map((item, i) => (
+      {(items ?? []).map((item, i) => (
         <div key={i} className="relative group">
           {/* Node */}
           <div className="absolute -left-[31px] top-1.5 w-3.5 h-3.5 rounded-full border-2 border-gold bg-paper group-hover:scale-110 transition-transform select-none" />
