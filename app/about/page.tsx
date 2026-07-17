@@ -78,23 +78,22 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Portrait / Gallery Mockup */}
+      {/* Portrait / Gallery — static fallback (about-gallery.mp4 removed from repo) */}
+      {/* TODO: Reconnect video via Vercel Blob / Cloudinary after deployment */}
       <section className="mb-24 rounded-3xl overflow-hidden aspect-[16/9] sm:aspect-[21/9] bg-ink relative border border-line/10 shadow-lg">
-        <video 
-          autoPlay 
-          loop 
-          muted 
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-80 transition-opacity duration-1000"
-        >
-          <source src="/assets/about-gallery.mp4" type="video/mp4" />
-        </video>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/assets/portrait-1200.webp"
+          alt="Praval Saxena — Portfolio Gallery"
+          className="absolute inset-0 w-full h-full object-cover object-top opacity-80"
+        />
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent" />
         <div className="absolute bottom-6 left-6 right-6 flex justify-between items-end z-10">
           <p className="text-paper/90 font-mono text-xs drop-shadow-md">Praval Saxena — Portfolio Gallery</p>
           <span className="w-2.5 h-2.5 rounded-full bg-gold animate-ping" />
         </div>
       </section>
+
 
       {/* Journey & Values */}
       <div className="grid md:grid-cols-2 gap-12 mb-24">
