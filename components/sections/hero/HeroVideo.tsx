@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Volume2, VolumeX } from "lucide-react";
 
-const POSTER = "/images/hero-poster.webp";
+const POSTER = "/images/hero-poster.png";
 
 type Status = "idle" | "loading" | "ready" | "error";
 
