@@ -21,7 +21,7 @@ interface SearchDialogProps {
  * gimmick" described in Part 2.3 §15. Fully keyboard operable, traps
  * focus while open, and closes on Escape or outside click.
  */
-export function SearchDialog({ items }: SearchDialogProps) {
+export function SearchDialog({ items, isGlass = false }: SearchDialogProps & { isGlass?: boolean }) {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
@@ -50,9 +50,9 @@ export function SearchDialog({ items }: SearchDialogProps) {
     const q = query.toLowerCase();
     return items.filter(
       (item) =>
-        item.title.toLowerCase().includes(q) ||
-        item.description.toLowerCase().includes(q) ||
-        item.group.toLowerCase().includes(q)
+          item.title.toLowerCase().includes(q) ||
+          item.description.toLowerCase().includes(q) ||
+          item.group.toLowerCase().includes(q)
     );
   }, [query, items]);
 
@@ -65,12 +65,20 @@ export function SearchDialog({ items }: SearchDialogProps) {
     <>
       <button
         onClick={() => setOpen(true)}
-        className="hidden sm:flex items-center gap-2 text-sm text-ink-soft border border-line rounded px-3 py-1.5 hover:border-line-strong transition-colors font-mono"
+        className={`hidden sm:flex items-center gap-2 text-sm transition-all font-mono rounded px-3 py-1.5 ${
+          isGlass
+            ? "text-white/70 border border-white/10 hover:border-white/30 bg-white/5 hover:bg-white/10"
+            : "text-ink-soft border border-line hover:border-line-strong bg-surface"
+        }`}
         aria-label="Open search (Command K)"
       >
         <Search size={14} />
         <span>Search</span>
-        <kbd className="text-xs text-stone border border-line rounded px-1.5 py-0.5">⌘K</kbd>
+        <kbd className={`text-xs border rounded px-1.5 py-0.5 ${
+          isGlass
+            ? "text-white/40 border-white/10 bg-transparent"
+            : "text-stone border-line bg-transparent"
+        }`}>⌘K</kbd>
       </button>
 
       {open && (

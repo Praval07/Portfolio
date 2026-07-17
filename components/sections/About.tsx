@@ -1,61 +1,129 @@
+"use client";
+
 import Image from "next/image";
-import { Reveal } from "@/components/motion/Reveal";
-import { SectionRail } from "@/components/ui/SectionRail";
+import { motion } from "framer-motion";
 import { LinkButton } from "@/components/ui/Button";
 import { GraduationCap, MapPin, Heart } from "lucide-react";
 
-const facts = [
-  { icon: GraduationCap, label: "Education", value: "B.Tech CSE\n2023 – 2027" },
-  { icon: MapPin, label: "Location", value: "Uttar Pradesh,\nIndia" },
-  { icon: Heart, label: "Interest", value: "AI, Web Dev,\nOpen Source" },
-];
-
 export function About() {
   return (
-    <section id="about" className="py-20 sm:py-28">
-      <div className="max-w-[1240px] mx-auto px-4 sm:px-6 flex gap-6">
-        <SectionRail number="01" label="About Me" />
-        <div className="flex-1 grid md:grid-cols-[0.85fr_1.15fr] gap-10 md:gap-16 items-center">
-          <Reveal className="relative max-w-sm mx-auto md:mx-0">
-            <div className="relative aspect-[4/5] rounded-3xl overflow-hidden bg-paper-deep">
-              <Image
-                src="/assets/portrait-1200.jpg"
-                alt="Portrait of Praval Saxena"
-                fill
-                sizes="(max-width: 768px) 80vw, 32vw"
-                className="object-cover"
-              />
+    <section 
+      id="about" 
+      className="py-24 sm:py-32 bg-gradient-to-b from-[#FAF8F5] to-[#F5F0E8] border-b border-line/10 relative overflow-hidden"
+    >
+      {/* Background Decorative Glow */}
+      <div 
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold/5 blur-[120px] rounded-full pointer-events-none -z-10" 
+      />
+
+      <motion.div 
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={{
+          hidden: { opacity: 0, y: 40 },
+          visible: { 
+            opacity: 1, 
+            y: 0, 
+            transition: { 
+              duration: 1, 
+              ease: "easeOut",
+              staggerChildren: 0.15 
+            } 
+          }
+        }}
+        className="max-w-[1240px] mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center"
+      >
+        {/* ── Left Side: Content (55% width on desktop) ── */}
+        <motion.div 
+          variants={{
+            hidden: { opacity: 0, x: -40 },
+            visible: { opacity: 1, x: 0, transition: { duration: 1, ease: "easeOut" } }
+          }}
+          className="lg:col-span-7 flex flex-col items-start z-10"
+        >
+          {/* Eyebrow Label */}
+          <span className="font-mono text-xs tracking-widest uppercase text-gold-deep font-semibold mb-4 block">
+            ABOUT ME
+          </span>
+
+          {/* Title */}
+          <h2 className="text-4xl sm:text-5xl font-display font-semibold tracking-tight text-ink mb-6 leading-tight">
+            Turning Ideas Into <span className="text-gold-deep">Intelligent</span> Solutions
+          </h2>
+
+          {/* Description */}
+          <p className="text-ink-soft text-base sm:text-lg leading-relaxed max-w-[620px] mb-10 font-light">
+            I am a passionate Computer Science Engineering student who loves building
+            innovative solutions using AI and full-stack technologies. I enjoy solving
+            real-world problems and creating products that make a difference by bridging
+            thoughtful design with robust engineering.
+          </p>
+
+          {/* Premium Info Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full mb-10">
+            {/* Education Card */}
+            <div className="bg-white/45 backdrop-blur-[2px] border border-line/10 rounded-2xl p-5 shadow-sm hover:shadow-md transition-shadow duration-300">
+              <GraduationCap className="text-gold-deep mb-3" size={20} />
+              <span className="font-mono text-[9px] uppercase tracking-wider text-stone block mb-1">Education</span>
+              <h4 className="text-sm font-semibold text-ink leading-tight mb-1">B.Tech Computer Science & Engineering</h4>
+              <p className="text-[11px] text-ink-soft">2023–2027</p>
             </div>
-            <span className="absolute -bottom-4 -left-4 w-16 h-16 rounded-2xl bg-gold" aria-hidden="true" />
-          </Reveal>
 
-          <Reveal delay={0.1}>
-            <p className="eyebrow mb-4">About Me</p>
-            <h2 className="text-4xl sm:text-5xl leading-tight mb-6">
-              Turning Ideas Into <span className="text-gold-deep">Intelligent</span> Solutions
-            </h2>
-            <p className="text-ink-soft text-lg max-w-[54ch] mb-8">
-              I am a passionate Computer Science Engineering student who loves building
-              innovative solutions using AI and full stack technologies. I enjoy solving
-              real-world problems and creating products that make a difference.
-            </p>
-
-            <div className="grid grid-cols-3 gap-4 mb-8">
-              {facts.map(({ icon: Icon, label, value }) => (
-                <div key={label}>
-                  <Icon size={18} className="text-gold-deep mb-2" />
-                  <span className="font-mono text-xs text-stone block mb-1">{label}</span>
-                  <span className="text-sm whitespace-pre-line">{value}</span>
-                </div>
-              ))}
+            {/* Location Card */}
+            <div className="bg-white/45 backdrop-blur-[2px] border border-line/10 rounded-2xl p-5 shadow-sm hover:shadow-md transition-shadow duration-300">
+              <MapPin className="text-gold-deep mb-3" size={20} />
+              <span className="font-mono text-[9px] uppercase tracking-wider text-stone block mb-1">Location</span>
+              <h4 className="text-sm font-semibold text-ink leading-tight mb-1">Uttar Pradesh</h4>
+              <p className="text-[11px] text-ink-soft">India</p>
             </div>
 
-            <LinkButton href="/#work" variant="primary">
-              Know About Me <span aria-hidden="true">↗</span>
-            </LinkButton>
-          </Reveal>
-        </div>
-      </div>
+            {/* Interests Card */}
+            <div className="bg-white/45 backdrop-blur-[2px] border border-line/10 rounded-2xl p-5 shadow-sm hover:shadow-md transition-shadow duration-300">
+              <Heart className="text-gold-deep mb-3" size={20} />
+              <span className="font-mono text-[9px] uppercase tracking-wider text-stone block mb-1">Interests</span>
+              <h4 className="text-sm font-semibold text-ink leading-tight mb-1">Artificial Intelligence</h4>
+              <p className="text-[11px] text-ink-soft">Full Stack • Open Source</p>
+            </div>
+          </div>
+
+          {/* Primary CTA with Glass Hover */}
+          <LinkButton 
+            href="/contact" 
+            className="bg-black/90 text-white hover:bg-white/10 hover:text-black hover:border-black/30 border border-transparent backdrop-blur-md transition-all duration-300 shadow-md shadow-black/10 hover:scale-105 active:scale-95"
+          >
+            Know About Me <span aria-hidden="true">→</span>
+          </LinkButton>
+        </motion.div>
+
+        {/* ── Right Side: Image Card (45% width on desktop) ── */}
+        <motion.div 
+          variants={{
+            hidden: { opacity: 0, x: 40 },
+            visible: { opacity: 1, x: 0, transition: { duration: 1, ease: "easeOut" } }
+          }}
+          className="lg:col-span-5 flex justify-center w-full"
+        >
+          {/* Luxury Card Container */}
+          <div className="relative w-full aspect-[4/3] sm:aspect-[16/10] lg:aspect-[4/5] max-w-[480px] rounded-[32px] overflow-hidden bg-white/5 backdrop-blur-md border border-white/[0.12] shadow-2xl shadow-black/10 group select-none pointer-events-auto">
+            {/* Layer 1: Image with hover zoom */}
+            <Image
+              src="/images/about-ai.png"
+              alt="Person working with AI holographic interface"
+              fill
+              priority={false}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
+              className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+            />
+
+            {/* Layer 2: Subtle Black Gradient overlay */}
+            <div className="absolute inset-0 bg-black/15 z-10 pointer-events-none rounded-[32px]" />
+
+            {/* Layer 3: Subtle warm orange radial overlay */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(249,115,22,0.12),_transparent_55%)] z-10 pointer-events-none rounded-[32px]" />
+          </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

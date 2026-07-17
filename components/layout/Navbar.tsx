@@ -40,15 +40,15 @@ export function Navbar() {
 
   return (
     <>
-      <header className="fixed top-0 inset-x-0 z-100 px-4 sm:px-6 pt-4">
+      <header className="fixed top-0 inset-x-0 z-50 flex justify-center pt-4 sm:pt-6 transition-all duration-300">
         <div
-          className={`max-w-[1240px] mx-auto flex items-center justify-between rounded-full transition-all duration-300 ${
+          className={`w-[88%] max-w-[1240px] flex items-center justify-between rounded-full backdrop-blur-md transition-all duration-300 ${
             scrolled
-              ? "bg-paper/85 backdrop-blur-md border border-line shadow-[0_8px_30px_-12px_rgba(14,14,16,0.15)] px-5 py-2.5"
-              : "bg-transparent px-5 py-2.5"
+              ? "bg-black/60 border border-white/10 px-5 py-2.5 shadow-lg shadow-black/20"
+              : "bg-black/45 border border-white/5 px-6 py-4"
           }`}
         >
-          <Link href="/#top" className="font-display text-lg font-semibold">
+          <Link href="/#top" className="font-display text-lg font-semibold text-white tracking-tight hover:scale-105 transition-all duration-300">
             PS<span className="text-gold">.</span>
           </Link>
 
@@ -58,7 +58,7 @@ export function Navbar() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-sm font-medium text-ink-soft hover:text-ink transition-colors relative after:absolute after:left-0 after:-bottom-1 after:h-px after:w-0 after:bg-gold hover:after:w-full after:transition-all"
+                    className="text-sm font-medium text-white/70 hover:text-white transition-colors relative after:absolute after:left-0 after:-bottom-1 after:h-px after:w-0 after:bg-gold hover:after:w-full after:transition-all"
                   >
                     {item.label}
                   </Link>
@@ -68,27 +68,27 @@ export function Navbar() {
           </nav>
 
           <div className="hidden lg:flex items-center gap-3">
-            <SearchDialog items={searchItems} />
-            <ThemeSwitcher />
+            <SearchDialog items={searchItems} isGlass />
+            <ThemeSwitcher isGlass />
             <a
               href={`mailto:${profile.email}`}
               aria-label="Email"
-              className="w-9 h-9 flex items-center justify-center rounded-full border border-line hover:border-ink transition-colors bg-surface text-ink"
+              className="w-9 h-9 flex items-center justify-center rounded-full border border-white/10 hover:border-white/30 transition-all duration-300 bg-white/5 text-white/80 hover:bg-white/10"
             >
               <Mail size={15} />
             </a>
             <Link
               href="/contact"
-              className="font-mono text-sm bg-ink text-paper rounded-full px-5 py-2.5 hover:bg-gold hover:text-ink transition-colors inline-flex items-center gap-1.5"
+              className="font-mono text-sm bg-white/15 text-white border border-white/10 hover:border-white/30 hover:bg-white/25 hover:scale-105 active:scale-95 transition-all duration-300 rounded-full px-6 py-2 inline-flex items-center gap-1.5 shadow-md shadow-black/10"
             >
               Let&rsquo;s Talk <span aria-hidden="true">↗</span>
             </Link>
           </div>
 
           <div className="lg:hidden flex items-center gap-2">
-            <ThemeSwitcher />
+            <ThemeSwitcher isGlass />
             <button
-              className="p-2 text-ink"
+              className="p-2 text-white/80 hover:text-white transition-colors"
               aria-label="Open menu"
               aria-expanded={mobileOpen}
               aria-controls="mobile-menu"

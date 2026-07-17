@@ -13,7 +13,7 @@ const STORAGE_KEY = "praval-theme";
  * inverts the paper/ink relationship rather than introducing new hues,
  * so brand consistency holds in both states.
  */
-export function ThemeSwitcher() {
+export function ThemeSwitcher({ isGlass = false }: { isGlass?: boolean }) {
   const [theme, setTheme] = useState<Theme>("light");
   const [mounted, setMounted] = useState(false);
 
@@ -39,7 +39,11 @@ export function ThemeSwitcher() {
     <button
       onClick={toggle}
       aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
-      className="w-9 h-9 flex items-center justify-center rounded-full border border-line hover:border-forest transition-colors"
+      className={`w-9 h-9 flex items-center justify-center rounded-full transition-all duration-300 ${
+        isGlass
+          ? "border border-white/10 hover:border-white/30 bg-white/5 text-white/80 hover:bg-white/10"
+          : "border border-line hover:border-forest text-ink bg-surface"
+      }`}
     >
       {theme === "light" ? <Moon size={16} /> : <Sun size={16} />}
     </button>
