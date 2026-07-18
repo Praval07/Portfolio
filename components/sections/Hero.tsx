@@ -2,166 +2,127 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { motion } from "framer-motion";
-import { GraduationCap, MapPin, Star, GraduationCap as Cap, Briefcase, Code2, Target, ArrowRight, Download, Send } from "lucide-react";
+import { HeroContent } from "./hero/HeroContent";
+import { HeroButtons } from "./hero/HeroButtons";
 
 export function Hero() {
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const opacity = Math.max(1 - scrollY / 600, 0);
+
   return (
-    <section id="top" className="relative w-full min-h-screen pt-24 pb-12 px-4 sm:px-8 lg:px-12 flex items-center justify-center bg-gradient-to-br from-[#fcfaf7] to-[#e6dcc6]">
-      <motion.div 
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, ease: "easeOut" }}
-        className="relative w-full max-w-[1400px] h-[85vh] min-h-[700px] rounded-[2.5rem] border border-white/60 shadow-[0_30px_60px_rgba(0,0,0,0.1)] overflow-hidden"
+    <section id="top" className="relative h-screen w-full overflow-hidden flex items-center bg-gradient-to-br from-zinc-900 to-black">
+      {/* ── Layer 0: Cinematic Background Image with slow zoom ── */}
+      <motion.div
+        animate={{
+          scale: [1, 1.05, 1],
+        }}
+        transition={{
+          duration: 30,
+          repeat: Infinity,
+          repeatType: "mirror",
+          ease: "easeInOut",
+        }}
+        className="absolute inset-0 z-0 w-full h-full select-none pointer-events-none"
       >
-        {/* Background Image */}
         <Image
-          src="/images/hero-new-bg.jpg"
-          alt="Praval Saxena Hero"
+          src="/images/hero-cinematic.png"
+          alt="Hero Background"
           fill
           priority
           quality={100}
-          className="object-cover object-right"
+          sizes="100vw"
+          className="object-cover object-center"
         />
-
-        {/* Content Container */}
-        <div className="absolute inset-y-0 left-0 w-full lg:w-[65%] p-8 sm:p-12 lg:p-16 flex flex-col justify-center overflow-y-auto overflow-x-hidden no-scrollbar">
-          
-          {/* Header Texts */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <p className="text-[#E8A63D] font-mono text-xs sm:text-sm tracking-widest font-semibold mb-4 uppercase">
-              About Me
-            </p>
-            <h2 className="text-2xl sm:text-3xl text-ink font-medium mb-2">
-              Hello, I&apos;m 👋
-            </h2>
-            <h1 className="text-6xl sm:text-[5.5rem] lg:text-[6.5rem] font-serif font-bold leading-[1.05] tracking-tight mb-4">
-              <span className="text-[#1a1a1a]">Praval</span><br />
-              <span className="text-[#E8A63D]">Saxena</span>
-            </h1>
-            <h3 className="text-xl sm:text-2xl font-medium text-ink mb-6">
-              AI Engineer
-            </h3>
-            <p className="text-ink/75 max-w-[450px] text-sm sm:text-base leading-relaxed mb-10">
-              I am a passionate Computer Science Engineering student who loves building innovative solutions using AI and full-stack technologies.
-            </p>
-          </motion.div>
-
-          {/* Info Cards */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="flex flex-wrap gap-4 mb-10 max-w-[650px]"
-          >
-            {/* Card 1 */}
-            <div className="bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl p-4 sm:p-5 flex gap-4 items-center flex-1 min-w-[180px] shadow-sm transition-all hover:bg-white/60">
-              <div className="w-10 h-10 rounded-full bg-white/70 flex items-center justify-center text-[#E8A63D] shrink-0 shadow-sm border border-white">
-                <GraduationCap size={20} />
-              </div>
-              <div>
-                <h4 className="font-semibold text-[#1a1a1a] text-sm mb-0.5">Education</h4>
-                <p className="text-xs text-ink/70 leading-tight">B.Tech in CSE<br/>(2023 - 2027)</p>
-              </div>
-            </div>
-            
-            {/* Card 2 */}
-            <div className="bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl p-4 sm:p-5 flex gap-4 items-center flex-1 min-w-[180px] shadow-sm transition-all hover:bg-white/60">
-              <div className="w-10 h-10 rounded-full bg-white/70 flex items-center justify-center text-[#E8A63D] shrink-0 shadow-sm border border-white">
-                <MapPin size={18} />
-              </div>
-              <div>
-                <h4 className="font-semibold text-[#1a1a1a] text-sm mb-0.5">Location</h4>
-                <p className="text-xs text-ink/70 leading-tight">Uttar Pradesh,<br/>India</p>
-              </div>
-            </div>
-
-            {/* Card 3 */}
-            <div className="bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl p-4 sm:p-5 flex gap-4 items-center flex-1 min-w-[180px] shadow-sm transition-all hover:bg-white/60">
-              <div className="w-10 h-10 rounded-full bg-white/70 flex items-center justify-center text-[#E8A63D] shrink-0 shadow-sm border border-white">
-                <Star size={18} />
-              </div>
-              <div>
-                <h4 className="font-semibold text-[#1a1a1a] text-sm mb-0.5">Interests</h4>
-                <p className="text-xs text-ink/70 leading-tight">Artificial Intelligence,<br/>Web Development,<br/>Open Source</p>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Buttons */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex flex-wrap gap-4 items-center"
-          >
-            <Link 
-              href="/#work" 
-              className="inline-flex items-center gap-2 bg-[#1a1a1a] text-white hover:bg-black transition-all duration-300 rounded-full px-6 sm:px-8 py-3 sm:py-3.5 text-sm font-medium shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95"
-            >
-              View Projects <ArrowRight size={16} className="text-[#E8A63D]" />
-            </Link>
-            
-            <Link 
-              href="/resume" 
-              className="inline-flex items-center gap-2 bg-white/50 backdrop-blur-sm border border-[#1a1a1a]/20 text-[#1a1a1a] hover:bg-white/80 hover:border-[#1a1a1a]/40 transition-all duration-300 rounded-full px-6 sm:px-8 py-3 sm:py-3.5 text-sm font-medium hover:scale-105 active:scale-95"
-            >
-              <Download size={16} className="text-[#E8A63D]" /> Download Resume
-            </Link>
-            
-            <Link 
-              href="/contact" 
-              className="inline-flex items-center gap-2 bg-white/50 backdrop-blur-sm border border-[#1a1a1a]/20 text-[#1a1a1a] hover:bg-white/80 hover:border-[#1a1a1a]/40 transition-all duration-300 rounded-full px-6 sm:px-8 py-3 sm:py-3.5 text-sm font-medium hover:scale-105 active:scale-95"
-            >
-              <Send size={16} className="text-[#E8A63D]" /> Let&apos;s Connect
-            </Link>
-          </motion.div>
-        </div>
-
-        {/* Bottom Right Stats Bar */}
-        <motion.div 
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.8, ease: "easeOut" }}
-          className="absolute bottom-6 sm:bottom-10 right-6 sm:right-10 bg-[#241e15]/85 backdrop-blur-xl rounded-[2rem] border border-white/10 p-5 sm:p-7 hidden md:flex items-center gap-8 shadow-[0_20px_40px_rgba(0,0,0,0.3)] z-20"
-        >
-          {/* Stat 1 */}
-          <div className="flex flex-col items-center justify-center min-w-[80px]">
-            <Cap size={24} className="text-[#E8A63D] mb-2 opacity-80" />
-            <span className="text-3xl font-serif font-bold text-white mb-1">3+</span>
-            <span className="text-[10px] text-white/60 uppercase tracking-wider text-center">Years Learning</span>
-          </div>
-          <div className="w-[1px] h-16 bg-white/10" />
-          
-          {/* Stat 2 */}
-          <div className="flex flex-col items-center justify-center min-w-[80px]">
-            <Briefcase size={24} className="text-[#E8A63D] mb-2 opacity-80" />
-            <span className="text-3xl font-serif font-bold text-white mb-1">10+</span>
-            <span className="text-[10px] text-white/60 uppercase tracking-wider text-center">Projects</span>
-          </div>
-          <div className="w-[1px] h-16 bg-white/10" />
-          
-          {/* Stat 3 */}
-          <div className="flex flex-col items-center justify-center min-w-[80px]">
-            <Code2 size={24} className="text-[#E8A63D] mb-2 opacity-80" />
-            <span className="text-3xl font-serif font-bold text-white mb-1">5+</span>
-            <span className="text-[10px] text-white/60 uppercase tracking-wider text-center">Technologies</span>
-          </div>
-          <div className="w-[1px] h-16 bg-white/10" />
-          
-          {/* Stat 4 */}
-          <div className="flex flex-col items-center justify-center min-w-[80px]">
-            <Target size={24} className="text-[#E8A63D] mb-2 opacity-80" />
-            <span className="text-3xl font-serif font-bold text-white mb-1">1</span>
-            <span className="text-[10px] text-white/60 uppercase tracking-wider text-center">Mission</span>
-          </div>
-        </motion.div>
       </motion.div>
+
+      {/* ── Layer 1: Dark Overlay (lightened to show image) ── */}
+      <div className="absolute inset-0 bg-black/5 z-0 pointer-events-none" />
+
+      {/* ── Layer 2: Right-side Gradient for text contrast (kept dark on the right for text) ── */}
+      <div 
+        className="absolute inset-0 z-0 pointer-events-none bg-gradient-to-r from-transparent via-transparent to-black/90" 
+      />
+
+      {/* ── Layer 3: Soft Vignette (lightened) ── */}
+      <div 
+        className="absolute inset-0 z-0 pointer-events-none bg-[radial-gradient(circle,_transparent_50%,_rgba(0,0,0,0.5)_100%)]" 
+      />
+
+      {/* ── Layer 5: Subtle atmospheric embers ── */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+        {[...Array(8)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-orange-500/20 filter blur-[0.5px]"
+            style={{
+              left: `${10 + i * 12}%`,
+              bottom: `${10 + (i * 7)}%`,
+            }}
+            animate={{
+              y: [-10, -140, -10],
+              x: [0, i % 2 === 0 ? 10 : -10, 0],
+              opacity: [0, 0.5, 0],
+            }}
+            transition={{
+              duration: 10 + i * 2.5,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: i * 1.2,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* ── Dynamic Overlay triggered on scroll ── */}
+      <div 
+        className="absolute inset-0 pointer-events-none z-0 transition-colors duration-100"
+        style={{
+          background: `rgba(0,0,0,${Math.min(scrollY / 1500, 0.45)})`
+        }}
+      />
+      
+      {/* ── Content Container (Fade Up transition) ── */}
+      <motion.div 
+        className="relative z-10 w-full max-w-[1240px] mx-auto px-4 sm:px-6 flex items-center justify-end h-full pt-16 lg:pt-0"
+        style={{ opacity }}
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.2, ease: "easeOut" }}
+      >
+        {/* Layer 4: Text area (45% width on desktop) - Removed blur background as requested */}
+        <div className="w-full lg:w-[45%] py-6 sm:py-10 lg:py-12 select-text">
+          <HeroContent />
+          <HeroButtons />
+        </div>
+      </motion.div>
+
+      {/* ── Scroll Indicator (Bottom Left) ── */}
+      <div className="absolute bottom-8 left-8 sm:left-12 z-20 flex flex-col items-start gap-1 text-white/40 select-none pointer-events-none">
+        <span className="font-mono text-[10px] tracking-widest uppercase">Scroll</span>
+        <motion.div
+          animate={{
+            y: [0, 6, 0]
+          }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          className="text-gold text-base font-semibold"
+        >
+          ↓
+        </motion.div>
+      </div>
     </section>
   );
 }
