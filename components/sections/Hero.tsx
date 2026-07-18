@@ -113,14 +113,14 @@ export function Hero() {
         transition={{ duration: 1.2, ease: "easeOut" }}
       >
         {/* Layer 4: Text area (45% width on desktop) - Removed blur background as requested */}
-        <div className="w-full lg:w-[45%] py-6 sm:py-10 lg:py-12 select-text">
+        <div className={`w-full lg:w-[45%] py-6 sm:py-10 lg:py-12 select-text transition-all duration-1000 delay-300 ${isVideoPlaying ? 'opacity-0 translate-y-8 pointer-events-none' : 'opacity-100 translate-y-0'}`}>
           <HeroContent />
           <HeroButtons />
         </div>
       </motion.div>
 
       {/* ── Scroll Indicator (Bottom Left) ── */}
-      <div className="absolute bottom-8 left-8 sm:left-12 z-20 flex flex-col items-start gap-1 text-white/40 select-none pointer-events-none">
+      <div className={`absolute bottom-8 left-8 sm:left-12 z-20 flex flex-col items-start gap-1 text-white/40 select-none pointer-events-none transition-opacity duration-1000 delay-500 ${isVideoPlaying ? 'opacity-0' : 'opacity-100'}`}>
         <span className="font-mono text-[10px] tracking-widest uppercase">Scroll</span>
         <motion.div
           animate={{
