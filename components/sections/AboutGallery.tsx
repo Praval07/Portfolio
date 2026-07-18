@@ -84,9 +84,13 @@ export function AboutGallery() {
   // ─────────────────────────────────────────────────────────────────────────
   return (
     <section className="mb-24 rounded-3xl overflow-hidden aspect-[16/9] sm:aspect-[21/9] bg-ink relative border border-line/10 shadow-2xl group">
-      <img
-        src="/images/about-ai.png"
-        alt="Praval Saxena Gallery"
+      <video
+        src="/videos/about-video.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+        suppressHydrationWarning
         className="absolute inset-0 w-full h-full object-cover"
       />
     </section>

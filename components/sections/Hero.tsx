@@ -40,6 +40,7 @@ export function Hero() {
             autoPlay
             muted
             playsInline
+            suppressHydrationWarning
             onEnded={() => setIsVideoPlaying(false)}
             className="absolute inset-0 w-full h-full object-cover object-center z-10"
           >
