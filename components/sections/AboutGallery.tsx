@@ -88,7 +88,6 @@ export function AboutGallery() {
         src="/videos/about-video.mp4"
         autoPlay
         loop
-        muted
         playsInline
         suppressHydrationWarning
         className="absolute inset-0 w-full h-full object-cover"

@@ -38,7 +38,6 @@ export function Hero() {
         {isVideoPlaying && (
           <video
             autoPlay
-            muted
             playsInline
             suppressHydrationWarning
             onEnded={() => setIsVideoPlaying(false)}
