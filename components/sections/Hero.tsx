@@ -9,8 +9,10 @@ import { HeroButtons } from "./hero/HeroButtons";
 export function Hero() {
   const [scrollY, setScrollY] = useState(0);
   const [isVideoPlaying, setIsVideoPlaying] = useState(true);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    setIsMounted(true);
     const handleScroll = () => {
       setScrollY(window.scrollY);
     };
@@ -35,11 +37,10 @@ export function Hero() {
         }}
         className="absolute inset-0 z-0 w-full h-full select-none pointer-events-none"
       >
-        {isVideoPlaying && (
+        {isMounted && isVideoPlaying && (
           <video
             autoPlay
             playsInline
-            suppressHydrationWarning
             onEnded={() => setIsVideoPlaying(false)}
             className="absolute inset-0 w-full h-full object-cover object-center z-10"
           >

@@ -11,12 +11,14 @@ export function AboutGallery() {
   const [playing, setPlaying] = useState(false);
   const [muted, setMuted] = useState(false); // Audio ON by default per spec
   const [showControls, setShowControls] = useState(true);
+  const [isMounted, setIsMounted] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const hideTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // ── Fetch OneDrive direct stream URL from our server-side API ──
   useEffect(() => {
+    setIsMounted(true);
     fetch("/api/video-url?key=gallery")
       .then((r) => {
         if (!r.ok) throw new Error(`API ${r.status}`);
@@ -84,14 +86,15 @@ export function AboutGallery() {
   // ─────────────────────────────────────────────────────────────────────────
   return (
     <section className="mb-24 rounded-3xl overflow-hidden aspect-[16/9] sm:aspect-[21/9] bg-ink relative border border-line/10 shadow-2xl group">
-      <video
-        src="/videos/about-video.mp4"
-        autoPlay
-        loop
-        playsInline
-        suppressHydrationWarning
-        className="absolute inset-0 w-full h-full object-cover"
-      />
+      {isMounted && (
+        <video
+          src="/videos/about-video.mp4"
+          autoPlay
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+      )}
     </section>
   );
 }
