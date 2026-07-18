@@ -20,7 +20,7 @@ export function Hero() {
   const opacity = Math.max(1 - scrollY / 600, 0);
 
   return (
-    <section id="top" className="relative h-screen w-full overflow-hidden flex items-center bg-black">
+    <section id="top" className="relative h-screen w-full overflow-hidden flex items-center bg-gradient-to-br from-zinc-900 to-black">
       {/* ── Layer 0: Cinematic Background Image with slow zoom ── */}
       <motion.div
         animate={{
@@ -32,34 +32,34 @@ export function Hero() {
           repeatType: "mirror",
           ease: "easeInOut",
         }}
-        className="absolute inset-0 -z-30 w-full h-full select-none pointer-events-none"
+        className="absolute inset-0 z-0 w-full h-full select-none pointer-events-none"
       >
         <Image
           src="/images/hero-cinematic.png"
-          alt="Cinematic Background — Lava city and skyline"
+          alt="Hero Background"
           fill
           priority
           quality={100}
           sizes="100vw"
-          className="object-cover object-[25%_center] md:object-center"
+          className="object-cover object-center"
         />
       </motion.div>
 
-      {/* ── Layer 1: Black Gradient (35% opacity) ── */}
-      <div className="absolute inset-0 bg-black/35 -z-20 pointer-events-none" />
+      {/* ── Layer 1: Dark Overlay (lightened to show image) ── */}
+      <div className="absolute inset-0 bg-black/5 z-0 pointer-events-none" />
 
-      {/* ── Layer 2: Warm Orange Gradient (10% opacity) ── */}
+      {/* ── Layer 2: Right-side Gradient for text contrast (kept dark on the right for text) ── */}
       <div 
-        className="absolute inset-0 -z-20 pointer-events-none bg-[radial-gradient(circle_at_bottom_left,_rgba(249,115,22,0.1),_transparent_70%)]" 
+        className="absolute inset-0 z-0 pointer-events-none bg-gradient-to-r from-transparent via-transparent to-black/90" 
       />
 
-      {/* ── Layer 3: Soft Vignette ── */}
+      {/* ── Layer 3: Soft Vignette (lightened) ── */}
       <div 
-        className="absolute inset-0 -z-20 pointer-events-none bg-[radial-gradient(circle,_transparent_35%,_rgba(10,9,8,0.7)_100%)]" 
+        className="absolute inset-0 z-0 pointer-events-none bg-[radial-gradient(circle,_transparent_50%,_rgba(0,0,0,0.5)_100%)]" 
       />
 
       {/* ── Layer 5: Subtle atmospheric embers ── */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
         {[...Array(8)].map((_, i) => (
           <motion.div
             key={i}
@@ -93,14 +93,14 @@ export function Hero() {
       
       {/* ── Content Container (Fade Up transition) ── */}
       <motion.div 
-        className="relative z-10 w-full max-w-[1240px] mx-auto px-4 sm:px-6 flex items-center h-full pt-16 lg:pt-0"
+        className="relative z-10 w-full max-w-[1240px] mx-auto px-4 sm:px-6 flex items-center justify-end h-full pt-16 lg:pt-0"
         style={{ opacity }}
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2, ease: "easeOut" }}
       >
-        {/* Layer 4: Text area with glassmorphism blur box (45% width on desktop) */}
-        <div className="w-full lg:w-[45%] bg-[#0a0908]/25 backdrop-blur-[3px] border border-white/5 rounded-3xl p-6 sm:p-10 lg:p-12 shadow-2xl shadow-black/45 select-text">
+        {/* Layer 4: Text area (45% width on desktop) - Removed blur background as requested */}
+        <div className="w-full lg:w-[45%] py-6 sm:py-10 lg:py-12 select-text">
           <HeroContent />
           <HeroButtons />
         </div>

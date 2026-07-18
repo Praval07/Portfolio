@@ -32,15 +32,15 @@ export function About() {
             } 
           }
         }}
-        className="max-w-[1240px] mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center"
+        className="max-w-[1240px] mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-[65%_35%] gap-12 lg:gap-16 items-center"
       >
-        {/* ── Left Side: Content (55% width on desktop) ── */}
+        {/* ── Left Side: Content (65% width on desktop) ── */}
         <motion.div 
           variants={{
             hidden: { opacity: 0, x: -40 },
             visible: { opacity: 1, x: 0, transition: { duration: 1, ease: "easeOut" } }
           }}
-          className="lg:col-span-7 flex flex-col items-start z-10"
+          className="flex flex-col items-start z-10"
         >
           {/* Eyebrow Label */}
           <span className="font-mono text-xs tracking-widest uppercase text-gold-deep font-semibold mb-4 block">
@@ -96,20 +96,20 @@ export function About() {
           </LinkButton>
         </motion.div>
 
-        {/* ── Right Side: Image Card (45% width on desktop) ── */}
+        {/* ── Right Side: Image Card (35% width on desktop) ── */}
         <motion.div 
           variants={{
             hidden: { opacity: 0, x: 40 },
             visible: { opacity: 1, x: 0, transition: { duration: 1, ease: "easeOut" } }
           }}
-          className="lg:col-span-5 flex justify-center w-full"
+          className="flex justify-center w-full"
         >
           {/* Luxury Card Container */}
           <div className="relative w-full aspect-[4/3] sm:aspect-[16/10] lg:aspect-[4/5] max-w-[480px] rounded-[32px] overflow-hidden bg-white/5 backdrop-blur-md border border-white/[0.12] shadow-2xl shadow-black/10 group select-none pointer-events-auto">
             {/* Layer 1: Image with hover zoom */}
             <Image
-              src="/images/about-ai.png"
-              alt="Person working with AI holographic interface"
+              src="/images/about-portrait.png"
+              alt="Praval Saxena Portrait"
               fill
               priority={false}
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"

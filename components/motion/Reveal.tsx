@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { useState, useEffect } from "react";
 import type { ReactNode } from "react";
 
 interface RevealProps {
@@ -22,10 +23,16 @@ const variants: Variants = {
  * the motion bible (Part 4.1, section 11).
  */
 export function Reveal({ children, delay = 0, className = "", as = "div" }: RevealProps) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const shouldReduceMotion = useReducedMotion();
   const Component = motion[as];
 
-  if (shouldReduceMotion) {
+  if (mounted && shouldReduceMotion) {
     const Static = as;
     return <Static className={className}>{children}</Static>;
   }
