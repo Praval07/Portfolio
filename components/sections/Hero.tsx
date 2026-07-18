@@ -8,6 +8,7 @@ import { HeroButtons } from "./hero/HeroButtons";
 
 export function Hero() {
   const [scrollY, setScrollY] = useState(0);
+  const [isVideoPlaying, setIsVideoPlaying] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,6 +35,17 @@ export function Hero() {
         }}
         className="absolute inset-0 z-0 w-full h-full select-none pointer-events-none"
       >
+        {isVideoPlaying && (
+          <video
+            autoPlay
+            muted
+            playsInline
+            onEnded={() => setIsVideoPlaying(false)}
+            className="absolute inset-0 w-full h-full object-cover object-center z-10"
+          >
+            <source src="/videos/hero-video.mp4" type="video/mp4" />
+          </video>
+        )}
         <Image
           src="/images/hero-cinematic.png"
           alt="Hero Background"
@@ -41,7 +53,7 @@ export function Hero() {
           priority
           quality={100}
           sizes="100vw"
-          className="object-cover object-center"
+          className={`object-cover object-center transition-opacity duration-1000 ${isVideoPlaying ? 'opacity-0' : 'opacity-100'}`}
         />
       </motion.div>
 

@@ -106,14 +106,14 @@ export function About() {
         >
           {/* Luxury Card Container */}
           <div className="relative w-full aspect-[4/3] sm:aspect-[16/10] lg:aspect-[4/5] max-w-[480px] rounded-[32px] overflow-hidden bg-white/5 backdrop-blur-md border border-white/[0.12] shadow-2xl shadow-black/10 group select-none pointer-events-auto">
-            {/* Layer 1: Image with hover zoom */}
-            <Image
-              src="/images/about-portrait.png"
-              alt="Praval Saxena Portrait"
-              fill
-              priority={false}
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
-              className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+            {/* Layer 1: Video with hover zoom */}
+            <video
+              src="/videos/about-video.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
             />
 
             {/* Layer 2: Subtle Black Gradient overlay */}
