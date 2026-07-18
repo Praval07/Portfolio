@@ -45,6 +45,7 @@
   }
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
   body {
     background: var(--color-paper-deep);
@@ -52,6 +53,7 @@
     font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    overflow-x: hidden;
   }
   ::selection {
     background: var(--color-gold);

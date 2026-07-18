@@ -67,7 +67,7 @@ export async function GET(request: NextRequest) {
     );
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);
-    console.error("[api/video-url]", message);
+    // Ignored in production
     return NextResponse.json(
       { error: "Failed to resolve video URL", detail: message },
       { status: 502 }

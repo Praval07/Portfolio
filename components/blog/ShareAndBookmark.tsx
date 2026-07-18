@@ -22,8 +22,8 @@ export function ShareAndBookmark({ slug, title }: ShareAndBookmarkProps) {
       try {
         const bookmarks = JSON.parse(saved) as string[];
         setBookmarked(bookmarks.includes(slug));
-      } catch (e) {
-        console.error(e);
+      } catch {
+        // Ignored
       }
     }
   }, [slug]);
@@ -40,8 +40,8 @@ export function ShareAndBookmark({ slug, title }: ShareAndBookmarkProps) {
     if (saved) {
       try {
         bookmarks = JSON.parse(saved) as string[];
-      } catch (e) {
-        console.error(e);
+      } catch {
+        // Ignored
       }
     }
 

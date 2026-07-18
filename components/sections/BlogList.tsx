@@ -64,8 +64,8 @@ export function BlogList({ initialPosts }: BlogListProps) {
     if (saved) {
       try {
         setBookmarks(JSON.parse(saved) as string[]);
-      } catch (e) {
-        console.error(e);
+      } catch {
+        // Ignored
       }
     }
   }, []);

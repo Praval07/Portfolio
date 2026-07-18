@@ -46,10 +46,10 @@ export function ProjectGallery({ gallery }: { gallery?: string[] }) {
             </p>
           </div>
           <div className="hidden sm:flex gap-4">
-            <button onClick={handlePrev} className="w-12 h-12 rounded-full border border-line flex items-center justify-center hover:bg-white hover:shadow-lg transition-all">
+            <button onClick={handlePrev} aria-label="Previous image" className="w-12 h-12 rounded-full border border-line flex items-center justify-center hover:bg-white hover:shadow-lg transition-all">
               <ChevronLeft size={20} />
             </button>
-            <button onClick={handleNext} className="w-12 h-12 rounded-full border border-line flex items-center justify-center hover:bg-white hover:shadow-lg transition-all">
+            <button onClick={handleNext} aria-label="Next image" className="w-12 h-12 rounded-full border border-line flex items-center justify-center hover:bg-white hover:shadow-lg transition-all">
               <ChevronRight size={20} />
             </button>
           </div>
@@ -76,10 +76,10 @@ export function ProjectGallery({ gallery }: { gallery?: string[] }) {
           
           {/* Mobile controls */}
           <div className="absolute inset-x-4 top-1/2 -translate-y-1/2 flex justify-between sm:hidden z-20 pointer-events-none">
-            <button onClick={(e) => { e.stopPropagation(); handlePrev(); }} className="pointer-events-auto w-10 h-10 rounded-full bg-white/80 backdrop-blur-md flex items-center justify-center shadow-lg">
+            <button onClick={(e) => { e.stopPropagation(); handlePrev(); }} aria-label="Previous image" className="pointer-events-auto w-10 h-10 rounded-full bg-white/80 backdrop-blur-md flex items-center justify-center shadow-lg">
               <ChevronLeft size={20} />
             </button>
-            <button onClick={(e) => { e.stopPropagation(); handleNext(); }} className="pointer-events-auto w-10 h-10 rounded-full bg-white/80 backdrop-blur-md flex items-center justify-center shadow-lg">
+            <button onClick={(e) => { e.stopPropagation(); handleNext(); }} aria-label="Next image" className="pointer-events-auto w-10 h-10 rounded-full bg-white/80 backdrop-blur-md flex items-center justify-center shadow-lg">
               <ChevronRight size={20} />
             </button>
           </div>
@@ -112,11 +112,12 @@ export function ProjectGallery({ gallery }: { gallery?: string[] }) {
             <button 
               className="absolute top-6 right-6 text-white/50 hover:text-white transition-colors"
               onClick={() => setLightboxOpen(false)}
+              aria-label="Close lightbox"
             >
               <X size={32} />
             </button>
 
-            <button onClick={(e) => { e.stopPropagation(); handlePrev(); }} className="absolute left-6 text-white/50 hover:text-white p-4 hidden sm:block">
+            <button onClick={(e) => { e.stopPropagation(); handlePrev(); }} aria-label="Previous image" className="absolute left-6 text-white/50 hover:text-white p-4 hidden sm:block">
               <ChevronLeft size={48} strokeWidth={1} />
             </button>
             
@@ -130,7 +131,7 @@ export function ProjectGallery({ gallery }: { gallery?: string[] }) {
               />
             </div>
 
-            <button onClick={(e) => { e.stopPropagation(); handleNext(); }} className="absolute right-6 text-white/50 hover:text-white p-4 hidden sm:block">
+            <button onClick={(e) => { e.stopPropagation(); handleNext(); }} aria-label="Next image" className="absolute right-6 text-white/50 hover:text-white p-4 hidden sm:block">
               <ChevronRight size={48} strokeWidth={1} />
             </button>
 

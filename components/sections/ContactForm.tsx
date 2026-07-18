@@ -127,13 +127,13 @@ export function ContactForm() {
           <div className="border-t border-line mt-6 pt-6">
             <h3 className="font-mono text-[10px] text-stone uppercase mb-3">SOCIAL CONNECTIONS</h3>
             <div className="flex gap-3">
-              <a href={profile.github} target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full border border-line hover:border-gold hover:text-gold transition-colors flex items-center justify-center bg-paper text-ink">
+              <a href={profile.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" className="w-8 h-8 rounded-full border border-line hover:border-gold hover:text-gold transition-colors flex items-center justify-center bg-paper text-ink">
                 <Github size={14} />
               </a>
-              <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full border border-line hover:border-gold hover:text-gold transition-colors flex items-center justify-center bg-paper text-ink">
+              <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" className="w-8 h-8 rounded-full border border-line hover:border-gold hover:text-gold transition-colors flex items-center justify-center bg-paper text-ink">
                 <Linkedin size={14} />
               </a>
-              <a href={profile.instagram} target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full border border-line hover:border-gold hover:text-gold transition-colors flex items-center justify-center bg-paper text-ink">
+              <a href={profile.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram Profile" className="w-8 h-8 rounded-full border border-line hover:border-gold hover:text-gold transition-colors flex items-center justify-center bg-paper text-ink">
                 <Instagram size={14} />
               </a>
             </div>

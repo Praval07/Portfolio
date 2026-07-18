@@ -24,7 +24,6 @@ export async function POST(request: Request) {
     }
 
     // TODO: send email / persist submission here.
-    console.log("Contact form submission (not yet wired to a real provider):", { name, email, message });
 
     return NextResponse.json({ ok: true });
   } catch {

@@ -12,7 +12,7 @@ export default function GlobalError({
 }) {
   useEffect(() => {
     // Wire this up to your error tracking (Sentry, etc.) before launch.
-    console.error(error);
+    // Intentionally not logging to console in production
   }, [error]);
 
   return (
